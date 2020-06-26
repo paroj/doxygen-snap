@@ -1,0 +1,26 @@
+name: doxygen-latest
+version: "1.8.18"
+confinement: classic
+summary: Generate documentation from source code
+description:  Doxygen is the de facto standard tool for generating documentation from annotated C++ sources, but it also supports other popular programming languages such as C, Objective-C, C#, PHP, Java, Python, IDL (Corba, Microsoft, and UNO/OpenOffice flavors), Fortran, VHDL and to some extent D.
+base: core18
+
+apps:
+    doxygen-latest:
+        command: doxygen
+
+parts:
+    doxygen:
+        plugin: cmake
+        configflags:
+            - -DCMAKE_BUILD_TYPE=Release
+            - -Duse_libclang=FALSE
+            - -DCMAKE_INSTALL_PREFIX=/
+        source: https://github.com/doxygen/doxygen.git
+        source-tag: Release_1_8_18
+        source-depth: 1
+        build-packages:
+            - flex
+            - bison
+            - g++
+            - make
